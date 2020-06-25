@@ -16,6 +16,7 @@ const sendGmailConf = async (snap) => {
         const docId = snap.id;
         const name = snap.data().name;
         const email = snap.data().email;
+        
         let data = {
             from: 'Aura App<connectwithaurapp@gmail.com>',
             to: email,

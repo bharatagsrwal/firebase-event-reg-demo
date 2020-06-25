@@ -40,6 +40,7 @@ document.getElementById('googleAuth').addEventListener('click', () => {
             <input type="email" placeholder="Email" id="email" value="${email}" /><br>
             <button onclick="saveData('${uid}')">Save Data</button>
         `;
+
     }).catch(function (error) {
         // Handle Errors here.
         let errorCode = error.code;
@@ -53,7 +54,7 @@ document.getElementById('googleAuth').addEventListener('click', () => {
 const saveData = (uid) => {
     const name = document.getElementById('name').value;
     const email = document.getElementById('email').value;
-    
+
     if (name.length > 0 && email.length > 4) {
         const dbRef = firebase.firestore();
         dbRef.collection('users').doc(uid).set({
@@ -70,5 +71,7 @@ const saveData = (uid) => {
         }).catch(e => {
             console.log(e);
         });
+    }else{
+        alert('Data is empty');
     }
 }
