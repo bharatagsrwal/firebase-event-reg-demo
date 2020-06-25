@@ -29,9 +29,11 @@ document.getElementById('googleAuth').addEventListener('click', () => {
         let uid = user.uid;
         let name = user.displayName;
         let email = user.email;
+
         authUser.style.display = "block";
         noAuth.style.display = "none";
         success.style.display = "none";
+
         authUser.innerHTML = `
             <img src="${user.photoURL}"><br>
             <input type="text" placeholder="Name" id="name" value="${name}" /><br>
@@ -42,10 +44,7 @@ document.getElementById('googleAuth').addEventListener('click', () => {
         // Handle Errors here.
         let errorCode = error.code;
         let errorMessage = error.message;
-        // The email of the user's account used.
-        let email = error.email;
-        // The firebase.auth.AuthCredential type that was used.
-        let credential = error.credential;
+
         console.log(error);
         // ...
     });
@@ -54,6 +53,7 @@ document.getElementById('googleAuth').addEventListener('click', () => {
 const saveData = (uid) => {
     const name = document.getElementById('name').value;
     const email = document.getElementById('email').value;
+    
     if (name.length > 0 && email.length > 4) {
         const dbRef = firebase.firestore();
         dbRef.collection('users').doc(uid).set({
